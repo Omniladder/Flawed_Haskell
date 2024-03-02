@@ -3,14 +3,16 @@
 module HTMLContent where
 
 import qualified Text.Blaze.Html5 as H
+import Text.Blaze.Html5.Attributes as A
+
 
 homePageContent :: H.Html
 homePageContent =
     H.html $ do
             H.head $ H.title "My Resume"
-            H.body $ do
-                H.h1 "Isaac Dugan's Reading List"
-                H.h2 "Completed Reading"
+            H.body H.! A.style "background-color:#d3d3d3; margin:0px;padding:0px;" $ do
+                H.h1 H.! A.style "text-align:center; font:bold; padding:5px; background-color:#FCD299" $ "Isaac Dugan's Reading List"
+                H.h2 H.! A.style "background-color:#000080; color:white; text-align:center;" $ "Completed Reading"
                 H.ul $ do
                     H.li "Big Data Baseball: Math, Miracles, and the End of a 20 Year Losing Streak (Travis Sawchik)"
                     H.li "The Mythical Man-Month: Essays on Software Engineering (Frederick P. Brokks, Jr.)"
@@ -30,11 +32,11 @@ homePageContent =
                     H.li "Elon Musk (Walter Isaacson)"
                     H.li "The Hitchhikers's Guide to the Galaxy (Douglas Adams)"
                     H.li "Dark Mirror: Edward Snowden and the American Surveillance State (Barton Gellman)"
-                H.h2 "Current Reading"
+                H.h2 H.! A.style "background-color:#000080; color:white; text-align:center;" $ "Current Reading"
                 H.ul $ do
                     H.li "Dune (Frank Herbert)"
                     H.li "Fundamentals of Data Engineering: Plan and Build Robust Systems (Joe Reis and Matt Housley)"
-                H.h2 "Future Reading"
+                H.h2 H.! A.style "background-color:#000080; color:white; text-align:center;" $ "Future Reading"
                 H.ul $ do
                     H.li "Chaos: Making a New Science (James Gleick)"
                     H.li "The Hidden Game of Baseball (John Thorn and Pete Palmer)"
