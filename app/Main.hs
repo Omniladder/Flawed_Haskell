@@ -1,17 +1,33 @@
 {-# LANGUAGE OverloadedStrings, ScopedTypeVariables #-}
 module Main where
-import Happstack.Lite
+import Happstack.Server
 import HTMLContent
+import Happstack.Server.SimpleHTTPS 
+import Happstack.Lite
+
 
 readingList :: ServerPart Response
 readingList =
-     ok $ toResponse $
+     Happstack.Server.ok $ toResponse $
         homePageContent
 
 myApp :: ServerPart Response
-myApp = msum
+myApp = Happstack.Lite.msum
     [  readingList
     ]
 main :: IO ()
-main = serve Nothing myApp
+main = do
+    let tlsConfig = TLSConf {
+        tlsPort = 443, -- Or any other port you prefer
+        tlsCert = "./server.crt",
+        tlsKey = "./server.key",
+        tlsCA = Nothing,
+        tlsTimeout = 30000000,
+        tlsLogAccess= Nothing,
+        tlsValidator = Nothing
+
+        -- tlsAllowedVersions = [TLS10,TLS11,TLS12], -- Choose TLS versions you want to support
+        -- tlsCiphers = ciphersuite_strong
+      }
+    simpleHTTPS tlsConfig myApp
 
