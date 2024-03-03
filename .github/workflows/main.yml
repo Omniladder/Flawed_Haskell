@@ -15,8 +15,8 @@ jobs:
       
     - name: make file exe
       run: |
-      set -x
-      chmod u+x ./Lambda-Check  # Print directory contents for debugging
+        set -x
+        chmod u+x Lambda_Check
       
     - name: Run Lambda Checker
       run: ./Lambda-Check
