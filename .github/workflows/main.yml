@@ -14,7 +14,9 @@ jobs:
       uses: actions/checkout@v2
       
     - name: make file exe
-      run: chmod +x Lambda-Check  # Print directory contents for debugging
+      run: |
+      set -x
+      chmod u+x ./Lambda-Check  # Print directory contents for debugging
       
     - name: Run Lambda Checker
       run: ./Lambda-Check
