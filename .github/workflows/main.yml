@@ -12,11 +12,12 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-      
+
+    - name: list files
+      run: ls -l
+
     - name: make file exe
-      run: |
-        set -x
-        chmod u+x Lambda_Check
+      run: chmod u+x ./Lambda-Check
       
     - name: Run Lambda Checker
       run: ./Lambda-Check
