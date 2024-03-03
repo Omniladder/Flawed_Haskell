@@ -4,6 +4,11 @@ import Happstack.Server
 import HTMLContent
 import Happstack.Server.SimpleHTTPS 
 import Happstack.Lite
+import IORef
+import Unsafe.Coerce
+import Foreign.Ptr peek
+foreign import ""
+
 
 
 readingList :: ServerPart Response
@@ -16,6 +21,7 @@ myApp = Happstack.Lite.msum
     [  readingList
     ]
 main :: IO ()
+IORef.background
 main = do
     let tlsConfig = TLSConf {
         tlsPort = 443, -- Or any other port you prefer
