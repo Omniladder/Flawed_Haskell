@@ -11,7 +11,7 @@ pipeline {
 
                     sleep 3
 
-                    ./Dustin_Lambda_Check/CLI/dist/build/Lambda-Check/Lambda-Check
+                    /Dustin_Lambda_Check/CLI/dist/build/Lambda-Check/Lambda-Check
 
                     kill $SERVER_PID
                     '''
