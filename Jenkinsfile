@@ -6,7 +6,7 @@ pipeline {
             steps {
 
                 sh '''
-                    python3 server.py &
+                    python3 /Dustin_Lambda_Check/serve.py &
                     SERVER_PID=$!
 
                     sleep 3
