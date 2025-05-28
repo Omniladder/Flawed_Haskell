@@ -4,7 +4,17 @@ pipeline {
     stages {
         stage('Run Lambda-Check') {
             steps {
-                sh '/Dustin_Lambda_Check/CLI/dist/build/Lambda-Check/Lambda-Check'
+
+                sh '''
+                    python3 server.py &
+                    SERVER_PID=$!
+
+                    sleep 3
+
+                    ./Dustin_Lambda_Check/CLI/dist/build/Lambda-Check/Lambda-Check
+
+                    kill $SERVER_PID
+                    '''
             }
         }
     }
