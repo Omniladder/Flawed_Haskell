@@ -7,17 +7,16 @@ on:
 
 jobs:
   build:
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
     
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
-    - name: list files
-      run: ls -l
-
-    - name: make file exe
-      run: chmod u+x ./Lambda-Check
-      
-    - name: Run Lambda Checker
-      run: ./Lambda-Check
+    - name: Pull & Run Container
+      run: | 
+          docker run --rm  \
+            -v ${{ github.workspace }}:/app \
+            -w /app \
+            omniladder/lambda-check \
+            Lambda-Check
